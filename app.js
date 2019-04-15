@@ -1,3 +1,6 @@
+// Load env variables
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 
@@ -9,7 +12,7 @@ const logger = require('./middleware/logger');
 const genresRoutes = require('./routes/genres');
 const customerRoutes = require('./routes/customers');
 
-mongoose.connect('mongodb://localhost/genresdb', { useNewUrlParser: true })
+mongoose.connect(process.env.DB_CONNECTION_STRING, { useNewUrlParser: true })
     .then(() => console.log('Connected to the DB'))
     .catch(err => console.error('Could not connect to the DB', err));
 
